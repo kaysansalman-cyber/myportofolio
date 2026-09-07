@@ -4,4 +4,4 @@ NPM : 2506540670
 
 Kelas : PBP F
 
-Tutorial 0
+Individual Assignment
