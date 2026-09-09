@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Experience</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <section class="experience-section">
+
+        <div class="container">
+
+            <h1>My Experience</h1>
+
+            <div class="experience-grid">
+
+                {% for experience in experiences %}
+
+                    <article class="experience-card">
+
+                        <h2>{{ experience.title }}</h2>
+
+                        <p class="experience-category">
+                            {{ experience.get_category_display }}
+                        </p>
+
+                        <p>
+                            {{ experience.description }}
+                        </p>
+
+                        {% if experience.is_ongoing %}
+                            <span class="experience-status">
+                                Currently Ongoing
+                            </span>
+                        {% else %}
+                            <span class="experience-status">
+                                Completed
+                            </span>
+                        {% endif %}
+
+                    </article>
+
+                {% empty %}
+
+                    <p>No experience available.</p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

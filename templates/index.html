@@ -25,6 +25,7 @@
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
+                <a href="{% url 'show_experience' %}">Experience</a>
                 <a href="#education">Education</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -47,14 +48,11 @@
 
                     <h1>
                         Hi, I'm
-                        <span>Kaysan.</span>
+                        <span>{{ name }}.</span>
                     </h1>
 
                     <p class="hero-description">
-                        I am an Information Systems student at the
-                        Faculty of Computer Science, Universitas Indonesia,
-                        interested in software development, technology,
-                        and building useful digital experiences.
+                        {{ bio }}
                     </p>
 
                     <div class="hero-actions">
@@ -101,10 +99,11 @@
                     <div class="about-text">
 
                         <p>
-                            Hello! My name is Kaysan Salman Ali Kusumah.
-                            I am currently studying Information Systems
+                            Hello! My name is {{ name }}.
+                            I am currently studying {{ study_program }}
                             at the Faculty of Computer Science,
                             Universitas Indonesia.
+
                         </p>
 
                         <p>

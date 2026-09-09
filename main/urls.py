@@ -1,0 +1,9 @@
+from django.urls import path
+from .views import show_main, show_experience
+
+
+
+urlpatterns = [
+    path("", show_main, name="show_main"),
+    path("experience/", show_experience, name="show_experience"),
+]
