@@ -47,3 +47,13 @@ def create_project(request):
     }
 
     return render(request, "create_project.html", context)
+
+def delete_project(request, id):
+    project = Project.objects.get(id=id)
+
+    if request.method == "POST":
+        project.delete()
+        return redirect("main:show_projects")
+
+    context = {"project": project}
+    return render(request, "delete_project.html", context)

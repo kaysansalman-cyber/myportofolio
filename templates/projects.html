@@ -53,6 +53,13 @@ Projects - Kaysan
                     </a>
                     {% endif %}
 
+                    <a
+                        href="{% url 'main:delete_project' project.id %}"
+                        class="project-link"
+                    >
+                        Delete Project
+                    </a>
+
                 </div>
 
             </article>

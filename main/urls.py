@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import show_main, show_experience, show_projects, create_project
+from .views import show_main, show_experience, show_projects, create_project, delete_project
 
 app_name = "main"
 
@@ -8,4 +8,5 @@ urlpatterns = [
     path("experience/", show_experience, name="show_experience"),
     path("projects/", show_projects, name="show_projects"),
     path("projects/create/", create_project, name="create_project"),
+    path("projects/delete/<uuid:id>/", delete_project, name="delete_project"),
 ]
