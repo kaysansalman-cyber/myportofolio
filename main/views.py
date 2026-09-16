@@ -57,3 +57,22 @@ def delete_project(request, id):
 
     context = {"project": project}
     return render(request, "delete_project.html", context)
+
+def edit_project(request, id):
+    project = Project.objects.get(id=id)
+
+    if request.method == "POST":
+        form = ProjectForm(request.POST, instance=project)
+
+        if form.is_valid():
+            form.save()
+            return redirect("main:show_projects")
+    else:
+        form = ProjectForm(instance=project)
+
+    context = {
+        "form": form,
+        "project": project,
+    }
+
+    return render(request, "edit_project.html", context)

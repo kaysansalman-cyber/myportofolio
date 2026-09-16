@@ -54,6 +54,13 @@ Projects - Kaysan
                     {% endif %}
 
                     <a
+                        href="{% url 'main:edit_project' project.id %}"
+                        class="project-link"
+                    >
+                        Edit Project
+                    </a>
+
+                    <a
                         href="{% url 'main:delete_project' project.id %}"
                         class="project-link"
                     >
