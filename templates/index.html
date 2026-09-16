@@ -1,465 +1,514 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}
+Kaysan Salman Ali Kusumah | Portfolio
+{% endblock title %}
 
-    <title>Kaysan Salman Ali Kusumah | Portfolio</title>
+{% block content %}
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="home">
+    <div class="container hero-grid">
 
-<body>
+        <div class="hero-content">
 
-    <!-- ==================== HEADER ==================== -->
-    <header class="site-header">
-        <div class="container nav-container">
-
-            <a href="#home" class="brand" aria-label="Go to homepage">
-                Kaysan
-            </a>
-
-            <nav class="main-nav" aria-label="Main navigation">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="{% url 'main:show_projects' %}">Projects</a>
-                <a href="{% url 'main:show_experience' %}">Experience</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
-            </nav>
-
-        </div>
-    </header>
-
-
-    <main>
-
-        <!-- ==================== HERO ==================== -->
-        <section class="hero" id="home">
-            <div class="container hero-grid">
-
-                <div class="hero-content">
-
-                    <p class="eyebrow">
-                        Information Systems Student · Universitas Indonesia
-                    </p>
-
-                    <h1>
-                        Hi, I'm
-                        <span>{{ name }}.</span>
-                    </h1>
-
-                    <p class="hero-description">
-                        {{ bio }}
-                    </p>
-
-                    <div class="hero-actions">
-                        <a href="#projects" class="button button-primary">
-                            View My Projects
-                        </a>
-
-                        <a href="#contact" class="button button-secondary">
-                            Contact Me
-                        </a>
-                    </div>
-
-                </div>
-
-
-                <div class="hero-photo">
-
-                    <div class="photo-decoration"></div>
-
-                    <img
-                        class="avatar"
-                        src="/static/img/kaysan.jpg"
-                        alt="Portrait of Kaysan"
-                    >
-
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- ==================== ABOUT ==================== -->
-        <section class="section about-section" id="about">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <p class="section-label">01 · About</p>
-                    <h2>About Me</h2>
-                </div>
-
-                <div class="about-grid">
-
-                    <div class="about-text">
-
-                        <p>
-                            Hello! My name is {{ name }}.
-                            I am currently studying {{ study_program }}
-                            at the Faculty of Computer Science,
-                            Universitas Indonesia.
-
-                        </p>
-
-                        <p>
-                            I enjoy learning how technology, programming,
-                            and information systems can be combined to
-                            solve problems and create useful applications.
-                        </p>
-
-                        <p>
-                            Through university projects and coursework,
-                            I have developed an interest in programming,
-                            web development, software engineering,
-                            and problem solving.
-                        </p>
-
-                    </div>
-
-                    <div class="about-info">
-
-                        <div class="info-card">
-                            <span class="info-label">Program</span>
-                            <strong>S1 Sistem Informasi</strong>
-                        </div>
-
-                        <div class="info-card">
-                            <span class="info-label">University</span>
-                            <strong>Universitas Indonesia</strong>
-                        </div>
-
-                        <div class="info-card">
-                            <span class="info-label">Faculty</span>
-                            <strong>Fasilkom UI</strong>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- ==================== SKILLS ==================== -->
-        <section class="section skills-section" id="skills">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <p class="section-label">02 · Skills</p>
-                    <h2>What I Work With</h2>
-                    <p>
-                        Technologies and tools that I have encountered
-                        through coursework and personal projects.
-                    </p>
-                </div>
-
-
-                <div class="skills-grid">
-
-                    <article class="skill-card">
-                        <div class="skill-number">01</div>
-                        <h3>Java</h3>
-                        <p>
-                            Object-oriented programming, collections,
-                            algorithms, and application development.
-                        </p>
-                        <span class="skill-tag">Programming</span>
-                    </article>
-
-
-                    <article class="skill-card">
-                        <div class="skill-number">02</div>
-                        <h3>HTML & CSS</h3>
-                        <p>
-                            Building structured web pages with semantic
-                            HTML5 and responsive CSS layouts.
-                        </p>
-                        <span class="skill-tag">Web Development</span>
-                    </article>
-
-
-                    <article class="skill-card">
-                        <div class="skill-number">03</div>
-                        <h3>Python & Django</h3>
-                        <p>
-                            Developing web applications and understanding
-                            the fundamentals of the Django framework.
-                        </p>
-                        <span class="skill-tag">Framework</span>
-                    </article>
-
-
-                    <article class="skill-card">
-                        <div class="skill-number">04</div>
-                        <h3>Git & GitHub</h3>
-                        <p>
-                            Version control, branching, commits,
-                            and collaborative software development.
-                        </p>
-                        <span class="skill-tag">Development Tools</span>
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==================== PROJECTS ==================== -->
-        <section class="section projects-section" id="projects">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <p class="section-label">03 · Projects</p>
-                    <h2>Things I've Worked On</h2>
-                    <p>
-                        Selected academic and personal projects that
-                        represent my learning journey.
-                    </p>
-                </div>
-
-
-                <div class="projects-grid">
-
-                    <article class="project-card">
-
-                        <div class="project-top">
-                            <span class="project-number">01</span>
-                            <span class="project-type">Java</span>
-                        </div>
-
-                        <h3>BurhanQuest</h3>
-
-                        <p>
-                            A Java-based adventure game project that
-                            applies object-oriented programming,
-                            collections, game logic, and unit testing.
-                        </p>
-
-                        <div class="project-tech">
-                            <span>Java</span>
-                            <span>OOP</span>
-                            <span>JUnit</span>
-                        </div>
-
-                    </article>
-
-
-                    <article class="project-card">
-
-                        <div class="project-top">
-                            <span class="project-number">02</span>
-                            <span class="project-type">Web</span>
-                        </div>
-
-                        <h3>Personal Portfolio</h3>
-
-                        <p>
-                            A responsive personal portfolio website
-                            developed as part of the Platform-Based
-                            Programming course.
-                        </p>
-
-                        <div class="project-tech">
-                            <span>Django</span>
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                        </div>
-
-                    </article>
-
-
-                    <article class="project-card">
-
-                        <div class="project-top">
-                            <span class="project-number">03</span>
-                            <span class="project-type">Assembly</span>
-                        </div>
-
-                        <h3>AVR Microcontroller Project</h3>
-
-                        <p>
-                            A microcontroller programming project involving
-                            AVR assembly, interrupts, registers, and LED
-                            control using the ATmega8515.
-                        </p>
-
-                        <div class="project-tech">
-                            <span>Assembly</span>
-                            <span>AVR</span>
-                            <span>Microcontroller</span>
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==================== EDUCATION ==================== -->
-        <section class="section education-section" id="education">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <p class="section-label">04 · Education</p>
-                    <h2>Education</h2>
-                </div>
-
-
-                <div class="timeline">
-
-                    <article class="timeline-item">
-
-                        <div class="timeline-marker"></div>
-
-                        <div class="timeline-content">
-
-                            <span class="timeline-year">
-                                2025 — Present
-                            </span>
-
-                            <h3>Universitas Indonesia</h3>
-
-                            <p class="timeline-role">
-                                Bachelor of Information Systems
-                            </p>
-
-                            <p>
-                                Faculty of Computer Science,
-                                Universitas Indonesia.
-                            </p>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="timeline-item">
-
-                        <div class="timeline-marker"></div>
-
-                        <div class="timeline-content">
-
-                            <span class="timeline-year">
-                                2022 — 2025
-                            </span>
-
-                            <h3>SMAN 8 Depok</h3>
-
-                            <p class="timeline-role">
-                                Mathematics and Natural Sciences
-                            </p>
-
-                            <p>
-                                Senior high school education with a focus
-                                on mathematics and natural sciences.
-                            </p>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==================== CONTACT ==================== -->
-        <section class="section contact-section" id="contact">
-
-            <div class="container">
-
-                <div class="contact-card">
-
-                    <div>
-                        <p class="section-label">05 · Contact</p>
-
-                        <h2>
-                            Let's connect.
-                        </h2>
-
-                        <p>
-                            Feel free to reach out through the platforms
-                            below.
-                        </p>
-                    </div>
-
-
-                    <div class="contact-links">
-
-                        <a
-                            href="https://github.com/kaysansalman-cyber"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="contact-link"
-                        >
-                            GitHub
-                            <span>↗</span>
-                        </a>
-
-
-                        <a
-                            href="https://www.linkedin.com/in/kaysan-salman-2796aa380/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="contact-link"
-                        >
-                            LinkedIn
-                            <span>↗</span>
-                        </a>
-
-
-                        <a
-                            href="mailto:kaysan.salman.ui.ac.ic"
-                            class="contact-link"
-                        >
-                            Email
-                            <span>↗</span>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="site-footer">
-
-        <div class="container footer-content">
-
-            <p>
-                © 2026 Kaysan Salman Ali Kusumah
+            <p class="eyebrow">
+                Information Systems Student · Universitas Indonesia
             </p>
 
+            <h1>
+                Hi, I'm
+                <span>{{ name }}.</span>
+            </h1>
+
+            <p class="hero-description">
+                {{ bio }}
+            </p>
+
+            <div class="hero-actions">
+                <a href="#projects" class="button button-primary">
+                    View My Projects
+                </a>
+
+                <a href="#contact" class="button button-secondary">
+                    Contact Me
+                </a>
+            </div>
+
+        </div>
+
+        <div class="hero-photo">
+
+            <div class="photo-decoration"></div>
+
+            <img
+                class="avatar"
+                src="/static/img/kaysan.jpg"
+                alt="Portrait of Kaysan"
+            >
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section about-section" id="about">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <p class="section-label">01 · About</p>
+            <h2>About Me</h2>
+        </div>
+
+        <div class="about-grid">
+
+            <div class="about-text">
+
+                <p>
+                    Hello! My name is {{ name }}.
+                    I am currently studying {{ study_program }}
+                    at the Faculty of Computer Science,
+                    Universitas Indonesia.
+                </p>
+
+                <p>
+                    I enjoy learning how technology, programming,
+                    and information systems can be combined to
+                    solve problems and create useful applications.
+                </p>
+
+                <p>
+                    Through university projects and coursework,
+                    I have developed an interest in programming,
+                    web development, software engineering,
+                    and problem solving.
+                </p>
+
+            </div>
+
+            <div class="about-info">
+
+                <div class="info-card">
+                    <span class="info-label">Program</span>
+                    <strong>S1 Sistem Informasi</strong>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label">University</span>
+                    <strong>Universitas Indonesia</strong>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label">Faculty</span>
+                    <strong>Fasilkom UI</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================== SKILLS ==================== -->
+<section class="section skills-section" id="skills">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <p class="section-label">02 · Skills</p>
+            <h2>What I Work With</h2>
+
             <p>
-                Built with HTML5, CSS3 & Django
+                Technologies and tools that I have encountered
+                through coursework and personal projects.
+            </p>
+        </div>
+
+        <div class="skills-grid">
+
+            <article class="skill-card">
+
+                <div class="skill-number">01</div>
+
+                <h3>Java</h3>
+
+                <p>
+                    Object-oriented programming, collections,
+                    algorithms, and application development.
+                </p>
+
+                <span class="skill-tag">
+                    Programming
+                </span>
+
+            </article>
+
+
+            <article class="skill-card">
+
+                <div class="skill-number">02</div>
+
+                <h3>HTML & CSS</h3>
+
+                <p>
+                    Building structured web pages with semantic
+                    HTML5 and responsive CSS layouts.
+                </p>
+
+                <span class="skill-tag">
+                    Web Development
+                </span>
+
+            </article>
+
+
+            <article class="skill-card">
+
+                <div class="skill-number">03</div>
+
+                <h3>Python & Django</h3>
+
+                <p>
+                    Developing web applications and understanding
+                    the fundamentals of the Django framework.
+                </p>
+
+                <span class="skill-tag">
+                    Framework
+                </span>
+
+            </article>
+
+
+            <article class="skill-card">
+
+                <div class="skill-number">04</div>
+
+                <h3>Git & GitHub</h3>
+
+                <p>
+                    Version control, branching, commits,
+                    and collaborative software development.
+                </p>
+
+                <span class="skill-tag">
+                    Development Tools
+                </span>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================== PROJECTS ==================== -->
+<section class="section projects-section" id="projects">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                03 · Projects
+            </p>
+
+            <h2>
+                Things I've Worked On
+            </h2>
+
+            <p>
+                Selected academic and personal projects that
+                represent my learning journey.
             </p>
 
         </div>
 
-    </footer>
 
-</body>
-</html>
+        <div class="projects-grid">
+
+            <article class="project-card">
+
+                <div class="project-top">
+
+                    <span class="project-number">
+                        01
+                    </span>
+
+                    <span class="project-type">
+                        Java
+                    </span>
+
+                </div>
+
+                <h3>
+                    BurhanQuest
+                </h3>
+
+                <p>
+                    A Java-based adventure game project that
+                    applies object-oriented programming,
+                    collections, game logic, and unit testing.
+                </p>
+
+                <div class="project-tech">
+
+                    <span>Java</span>
+                    <span>OOP</span>
+                    <span>JUnit</span>
+
+                </div>
+
+            </article>
+
+
+            <article class="project-card">
+
+                <div class="project-top">
+
+                    <span class="project-number">
+                        02
+                    </span>
+
+                    <span class="project-type">
+                        Web
+                    </span>
+
+                </div>
+
+                <h3>
+                    Personal Portfolio
+                </h3>
+
+                <p>
+                    A responsive personal portfolio website
+                    developed as part of the Platform-Based
+                    Programming course.
+                </p>
+
+                <div class="project-tech">
+
+                    <span>Django</span>
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+
+                </div>
+
+            </article>
+
+
+            <article class="project-card">
+
+                <div class="project-top">
+
+                    <span class="project-number">
+                        03
+                    </span>
+
+                    <span class="project-type">
+                        Assembly
+                    </span>
+
+                </div>
+
+                <h3>
+                    AVR Microcontroller Project
+                </h3>
+
+                <p>
+                    A microcontroller programming project involving
+                    AVR assembly, interrupts, registers, and LED
+                    control using the ATmega8515.
+                </p>
+
+                <div class="project-tech">
+
+                    <span>Assembly</span>
+                    <span>AVR</span>
+                    <span>Microcontroller</span>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================== EDUCATION ==================== -->
+<section class="section education-section" id="education">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                04 · Education
+            </p>
+
+            <h2>
+                Education
+            </h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+            <article class="timeline-item">
+
+                <div class="timeline-marker"></div>
+
+                <div class="timeline-content">
+
+                    <span class="timeline-year">
+                        2025 — Present
+                    </span>
+
+                    <h3>
+                        Universitas Indonesia
+                    </h3>
+
+                    <p class="timeline-role">
+                        Bachelor of Information Systems
+                    </p>
+
+                    <p>
+                        Faculty of Computer Science,
+                        Universitas Indonesia.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="timeline-item">
+
+                <div class="timeline-marker"></div>
+
+                <div class="timeline-content">
+
+                    <span class="timeline-year">
+                        2022 — 2025
+                    </span>
+
+                    <h3>
+                        SMAN 8 Depok
+                    </h3>
+
+                    <p class="timeline-role">
+                        Mathematics and Natural Sciences
+                    </p>
+
+                    <p>
+                        Senior high school education with a focus
+                        on mathematics and natural sciences.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================== CONTACT ==================== -->
+<section class="section contact-section" id="contact">
+
+    <div class="container">
+
+        <div class="contact-card">
+
+            <div>
+
+                <p class="section-label">
+                    05 · Contact
+                </p>
+
+                <h2>
+                    Let's connect.
+                </h2>
+
+                <p>
+                    Feel free to reach out through the platforms
+                    below.
+                </p>
+
+            </div>
+
+
+            <div class="contact-links">
+
+                <a
+                    href="https://github.com/kaysansalman-cyber"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                >
+                    GitHub
+                    <span>↗</span>
+                </a>
+
+
+                <a
+                    href="https://www.linkedin.com/in/kaysan-salman-2796aa380/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                >
+                    LinkedIn
+                    <span>↗</span>
+                </a>
+
+
+                <a
+                    href="mailto:kaysan.salman.ui.ac.ic"
+                    class="contact-link"
+                >
+                    Email
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © 2026 Kaysan Salman Ali Kusumah
+        </p>
+
+        <p>
+            Built with HTML5, CSS3 & Django
+        </p>
+
+    </div>
+
+</footer>
+
+{% endblock content %}

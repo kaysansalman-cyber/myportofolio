@@ -1,62 +1,55 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
 
-    <title>Experience</title>
+{% block title %}
+Experience - Kaysan
+{% endblock title %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block content %}
 
-<body>
+<section class="experience-section">
 
-    <section class="experience-section">
+    <div class="container">
 
-        <div class="container">
+        <h1>My Experience</h1>
 
-            <h1>My Experience</h1>
+        <div class="experience-grid">
 
-            <div class="experience-grid">
+            {% for experience in experiences %}
 
-                {% for experience in experiences %}
+                <article class="experience-card">
 
-                    <article class="experience-card">
+                    <h2>{{ experience.title }}</h2>
 
-                        <h2>{{ experience.title }}</h2>
+                    <p class="experience-category">
+                        {{ experience.get_category_display }}
+                    </p>
 
-                        <p class="experience-category">
-                            {{ experience.get_category_display }}
-                        </p>
+                    <p>
+                        {{ experience.description }}
+                    </p>
 
-                        <p>
-                            {{ experience.description }}
-                        </p>
+                    {% if experience.is_ongoing %}
+                        <span class="experience-status">
+                            Currently Ongoing
+                        </span>
+                    {% else %}
+                        <span class="experience-status">
+                            Completed
+                        </span>
+                    {% endif %}
 
-                        {% if experience.is_ongoing %}
-                            <span class="experience-status">
-                                Currently Ongoing
-                            </span>
-                        {% else %}
-                            <span class="experience-status">
-                                Completed
-                            </span>
-                        {% endif %}
+                </article>
 
-                    </article>
+            {% empty %}
 
-                {% empty %}
+                <p>No experience available.</p>
 
-                    <p>No experience available.</p>
-
-                {% endfor %}
-
-            </div>
+            {% endfor %}
 
         </div>
 
-    </section>
+    </div>
 
-</body>
-</html>
+</section>
+
+{% endblock content %}

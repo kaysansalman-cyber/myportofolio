@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Kaysan Portfolio{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="{% url 'main:show_main' %}" class="logo">
+                Kaysan
+            </a>
+
+            <div class="nav-links">
+                <a href="{% url 'main:show_main' %}#about">About</a>
+                <a href="{% url 'main:show_experience' %}">Experience</a>
+                <a href="{% url 'main:show_projects' %}">Projects</a>
+                <a href="{% url 'main:show_main' %}#skills">Skills</a>
+                <a href="{% url 'main:show_main' %}#education">Education</a>
+                <a href="{% url 'main:show_main' %}#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+</body>
+</html>

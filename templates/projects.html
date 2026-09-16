@@ -1,102 +1,74 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Kaysan</title>
+{% block title %}
+Projects - Kaysan
+{% endblock title %}
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% block content %}
 
-<body>
+<section class="projects-page">
 
-    <!-- ==================== NAVBAR ==================== -->
-    <nav>
-        <div class="nav-container">
-            <a href="{% url 'main:show_main' %}" class="logo">
-                Kaysan
-            </a>
+    <section class="projects-section">
 
-            <div class="nav-links">
-                <a href="{% url 'main:show_main' %}#about">About</a>
-                <a href="{% url 'main:show_experience' %}">Experience</a>
-                <a href="{% url 'main:show_projects' %}">Projects</a>
-                <a href="{% url 'main:show_main' %}#skills">Skills</a>
-                <a href="{% url 'main:show_main' %}#education">Education</a>
-                <a href="{% url 'main:show_main' %}#contact">Contact</a>
-            </div>
+        <div class="section-header">
+            <p class="section-label">MY WORK</p>
+            <h1>Projects</h1>
+            <p>
+                Berikut adalah beberapa project yang telah saya kerjakan
+                selama belajar pemrograman dan teknologi.
+            </p>
         </div>
-    </nav>
 
+        <div class="projects-grid">
 
-    <!-- ==================== PROJECTS ==================== -->
-    <main class="projects-page">
+            {% for project in projects %}
 
-        <section class="projects-section">
+            <article class="project-card">
 
-            <div class="section-header">
-                <p class="section-label">MY WORK</p>
-                <h1>Projects</h1>
-                <p>
-                    Berikut adalah beberapa project yang telah saya kerjakan
-                    selama belajar pemrograman dan teknologi.
-                </p>
-            </div>
+                <div class="project-card-content">
 
+                    <span class="project-type">
+                        {{ project.get_project_type_display }}
+                    </span>
 
-            <div class="projects-grid">
+                    <h2>{{ project.title }}</h2>
 
-                {% for project in projects %}
+                    <p>
+                        {{ project.description }}
+                    </p>
 
-                <article class="project-card">
+                    <p class="project-technologies">
+                        <strong>Technologies:</strong>
+                        {{ project.technologies }}
+                    </p>
 
-                    <div class="project-card-content">
+                    {% if project.github_url %}
+                    <a
+                        href="{{ project.github_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link"
+                    >
+                        View on GitHub →
+                    </a>
+                    {% endif %}
 
-                        <span class="project-type">
-                            {{ project.get_project_type_display }}
-                        </span>
+                </div>
 
-                        <h2>{{ project.title }}</h2>
+            </article>
 
-                        <p>
-                            {{ project.description }}
-                        </p>
+            {% empty %}
 
-                        <p class="project-technologies">
-                            <strong>Technologies:</strong>
-                            {{ project.technologies }}
-                        </p>
+            <p>
+                Belum ada project yang tersedia.
+            </p>
 
-                        {% if project.github_url %}
-                        <a
-                            href="{{ project.github_url }}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="project-link"
-                        >
-                            View on GitHub →
-                        </a>
-                        {% endif %}
+            {% endfor %}
 
-                    </div>
+        </div>
 
-                </article>
+    </section>
 
-                {% empty %}
+</section>
 
-                <p>
-                    Belum ada project yang tersedia.
-                </p>
-
-                {% endfor %}
-
-            </div>
-
-        </section>
-
-    </main>
-
-</body>
-</html>
+{% endblock content %}
