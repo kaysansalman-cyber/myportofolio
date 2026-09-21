@@ -32,6 +32,8 @@ Experience - Kaysan
                         {{ experience.description }}
                     </p>
 
+                    <div class="experience-actions">
+
                     {% if experience.is_ongoing %}
                         <span class="experience-status">
                             Currently Ongoing
@@ -42,9 +44,21 @@ Experience - Kaysan
                         </span>
                     {% endif %}
 
-                    <a href="{% url 'main:edit_experience' experience.id %}">
+                    <a
+                        href="{% url 'main:edit_experience' experience.id %}"
+                        class="experience-action edit"
+                    >
                         Edit Experience
                     </a>
+
+                    <a
+                        href="{% url 'main:delete_experience' experience.id %}"
+                        class="experience-action delete"
+                    >
+                        Delete Experience
+                    </a>
+
+                </div>
 
                 </article>
 

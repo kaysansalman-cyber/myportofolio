@@ -4,6 +4,7 @@ from .views import (
     show_experience,
     create_experience,
     edit_experience,
+    delete_experience,
     show_projects,
     create_project,
     delete_project,
@@ -25,6 +26,11 @@ urlpatterns = [
         "experience/edit/<uuid:id>/",
         edit_experience,
         name="edit_experience"
+    ),
+    path(
+    "experience/delete/<uuid:id>/",
+    delete_experience,
+    name="delete_experience"
     ),
 
     path("projects/", show_projects, name="show_projects"),

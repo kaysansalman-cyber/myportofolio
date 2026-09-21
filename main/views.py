@@ -111,3 +111,17 @@ def edit_experience(request, id):
     }
 
     return render(request, "edit_experience.html", context)
+
+def delete_experience(request, id):
+    experience = Experience.objects.get(id=id)
+
+    if request.method == "POST":
+        experience.delete()
+        return redirect("main:show_experience")
+
+    context = {
+        "experience": experience
+    }
+
+    return render(request, "delete_experience.html", context)
+
