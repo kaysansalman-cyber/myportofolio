@@ -2,6 +2,8 @@ from django.urls import path
 from .views import (
     show_main,
     show_experience,
+    experience_json,
+    experience_json_deserialized,
     create_experience,
     edit_experience,
     delete_experience,
@@ -17,6 +19,16 @@ urlpatterns = [
     path("", show_main, name="show_main"),
 
     path("experience/", show_experience, name="show_experience"),
+    path(
+    "experience/json/",
+    experience_json,
+    name="experience_json"
+    ),
+    path(
+    "experience/json/deserialized/",
+    experience_json_deserialized,
+    name="experience_json_deserialized"
+    ),
     path(
         "experience/create/",
         create_experience,

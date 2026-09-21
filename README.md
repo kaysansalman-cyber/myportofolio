@@ -1,4 +1,4 @@
-# Individual Assignment 2
+# Individual Assignment 
 
 **Nama:** Kaysan Salman Ali Kusumah
 **NPM:** 2506540670
@@ -246,6 +246,48 @@ python manage.py migrate
 
 
 Migration tersebut kemudian diterapkan ke database sehingga data `Project` dapat disimpan dan digunakan oleh aplikasi.
+
+#Tugas 3
+
+1. Jelaskan mengapa kita menggunakan `ModelForm` pada Django alih-alih membuat form HTML secara manual. Selain itu, jelaskan pula mengapa kita diwajibkan menambahkan `{% csrf_token %}` pada form tersebut.
+
+   Saya menggunakan `ModelForm` karena `ModelForm` dapat membuat form HTML berdasarkan model Django yang sudah didefinisikan. Dengan `ModelForm`, field pada form dapat disesuaikan langsung dengan field yang terdapat pada model sehingga proses pembuatan form menjadi lebih sederhana, konsisten, dan mengurangi penulisan kode secara manual.
+
+   Pada implementasi Tugas 3, saya membuat `ExperienceForm` berdasarkan model `Experience`. Field seperti `title`, `description`, `category`, `thumbnail`, dan `ended_at` dapat digunakan langsung pada form untuk membuat maupun mengubah data experience.
+
+   `{% csrf_token %}` digunakan untuk memberikan perlindungan terhadap serangan Cross-Site Request Forgery (CSRF). Token tersebut memastikan bahwa request POST yang diterima oleh Django berasal dari form yang valid dari aplikasi, bukan request palsu yang dibuat oleh pihak lain. Oleh karena itu, token CSRF perlu digunakan pada form yang melakukan perubahan data seperti create, update, dan delete.
+
+2. Pada Tutorial 03, kita membahas format data JSON dan XML. Mengapa JSON lebih disukai dalam pengembangan aplikasi web modern dibandingkan XML?
+
+   JSON lebih sering digunakan dalam pengembangan aplikasi web modern karena struktur datanya lebih sederhana dan mudah dibaca oleh manusia maupun diproses oleh program. JSON juga memiliki sintaks yang lebih ringkas dibandingkan XML sehingga ukuran data yang dikirim dapat lebih kecil.
+
+   Selain itu, JSON memiliki struktur yang sesuai dengan tipe data yang umum digunakan dalam pemrograman, seperti object, array, string, number, boolean, dan null. Hal ini membuat JSON mudah digunakan untuk komunikasi antara frontend dan backend maupun untuk pembuatan API.
+
+   Dalam Tugas 3, data `Experience` diubah menjadi JSON menggunakan serializer Django sebelum dikirim melalui HTTP response. Data tersebut kemudian dapat diambil dan dilakukan proses deserialisasi untuk ditampilkan kembali pada halaman web.
+
+3. Jelaskan alur yang terjadi saat kamu menggunakan fungsi view untuk mengembalikan data portofoliomu dalam bentuk JSON. Mengapa kita perlu melakukan proses serialization pada model Django sebelum datanya dikembalikan?
+
+   Alur pengiriman data JSON pada Tugas 3 dimulai ketika pengguna mengakses URL JSON untuk bagian Experience. View mengambil seluruh data `Experience` dari database menggunakan `Experience.objects.all()`.
+
+   Data tersebut kemudian diproses menggunakan Django serializer dengan kode:
+
+   `serializers.serialize("json", Experience.objects.all())`
+
+   Proses serialization diperlukan karena objek QuerySet dan instance model Django tidak dapat langsung dikirim sebagai JSON. Serialization mengubah data dari model Django menjadi representasi JSON yang dapat dikirim melalui HTTP response.
+
+   Setelah JSON diperoleh, data tersebut dikembalikan menggunakan `HttpResponse` dengan content type `application/json`. Pada fitur deserialisasi, JSON kemudian diproses menggunakan `json.loads()` sehingga data JSON berubah kembali menjadi struktur data Python yang dapat digunakan oleh template untuk ditampilkan kepada pengguna.
+
+   Pada implementasi saya, alurnya adalah:
+
+   Model `Experience`
+   → QuerySet
+   → Django Serialization
+   → JSON
+   → `HttpResponse`
+   → `json.loads()`
+   → Data Python
+   → Template
+   → Ditampilkan pada halaman web.
 
 ## AI Disclosure
 

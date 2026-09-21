@@ -16,6 +16,10 @@ Experience - Kaysan
             Tambah Experience
         </a>
 
+        <a href="{% url 'main:experience_json_deserialized' %}">
+            Lihat Data JSON
+        </a>
+
         <div class="experience-grid">
 
             {% for experience in experiences %}

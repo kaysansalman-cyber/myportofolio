@@ -1,4 +1,8 @@
+import json
+
 from django.shortcuts import redirect, render
+from django.core import serializers
+from django.http import HttpResponse
 from .models import Experience, Project
 from .forms import ProjectForm, ExperienceForm
 
@@ -21,6 +25,35 @@ def show_experience(request):
     }
 
     return render(request, 'experience.html', context)
+
+def experience_json(request):
+    data = serializers.serialize(
+        "json",
+        Experience.objects.all()
+    )
+
+    return HttpResponse(
+        data,
+        content_type="application/json"
+    )
+
+def experience_json_deserialized(request):
+    data = serializers.serialize(
+        "json",
+        Experience.objects.all()
+    )
+
+    experiences = json.loads(data)
+
+    context = {
+        "experiences": experiences
+    }
+
+    return render(
+        request,
+        "experience_json.html",
+        context
+    )
 
 def show_projects(request):
     projects = Project.objects.all()
@@ -76,6 +109,7 @@ def edit_project(request, id):
     }
 
     return render(request, "edit_project.html", context)
+
 def create_experience(request):
     if request.method == "POST":
         form = ExperienceForm(request.POST)

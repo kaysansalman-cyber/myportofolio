@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Experience JSON - Kaysan
+{% endblock title %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <p class="section-label">JSON DATA</p>
+            <h1>Experience JSON Data</h1>
+            <p>
+                Data experience yang telah diambil dalam format JSON
+                kemudian di-deserialize dan ditampilkan kembali.
+            </p>
+        </div>
+
+        {% for experience in experiences %}
+        <article class="experience-card">
+            <h2>{{ experience.fields.title }}</h2>
+
+            <p class="experience-category">
+                {{ experience.fields.category }}
+            </p>
+
+            <p>
+                {{ experience.fields.description }}
+            </p>
+
+            {% if experience.fields.thumbnail %}
+            <img
+                src="{{ experience.fields.thumbnail }}"
+                alt="{{ experience.fields.title }}"
+            >
+            {% endif %}
+
+            {% if experience.fields.ended_at %}
+                <p class="experience-status">Completed</p>
+            {% else %}
+                <p class="experience-status">Currently Ongoing</p>
+            {% endif %}
+        </article>
+        {% empty %}
+        <p>No experience data available.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
