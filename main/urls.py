@@ -3,11 +3,13 @@ from .views import (
     show_main,
     show_experience,
     create_experience,
+    edit_experience,
     show_projects,
     create_project,
     delete_project,
     edit_project,
 )
+
 app_name = "main"
 
 urlpatterns = [
@@ -18,6 +20,11 @@ urlpatterns = [
         "experience/create/",
         create_experience,
         name="create_experience"
+    ),
+    path(
+        "experience/edit/<uuid:id>/",
+        edit_experience,
+        name="edit_experience"
     ),
 
     path("projects/", show_projects, name="show_projects"),

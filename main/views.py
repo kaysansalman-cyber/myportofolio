@@ -92,3 +92,22 @@ def create_experience(request):
     }
 
     return render(request, "create_experience.html", context)
+
+def edit_experience(request, id):
+    experience = Experience.objects.get(id=id)
+
+    if request.method == "POST":
+        form = ExperienceForm(request.POST, instance=experience)
+
+        if form.is_valid():
+            form.save()
+            return redirect("main:show_experience")
+    else:
+        form = ExperienceForm(instance=experience)
+
+    context = {
+        "form": form,
+        "experience": experience,
+    }
+
+    return render(request, "edit_experience.html", context)

@@ -42,6 +42,10 @@ Experience - Kaysan
                         </span>
                     {% endif %}
 
+                    <a href="{% url 'main:edit_experience' experience.id %}">
+                        Edit Experience
+                    </a>
+
                 </article>
 
             {% empty %}
