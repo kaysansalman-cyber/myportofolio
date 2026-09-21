@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Experience, Project
-from .forms import ProjectForm
+from .forms import ProjectForm, ExperienceForm
 
 def show_main(request):
     context = {
@@ -76,3 +76,19 @@ def edit_project(request, id):
     }
 
     return render(request, "edit_project.html", context)
+def create_experience(request):
+    if request.method == "POST":
+        form = ExperienceForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("main:show_experience")
+
+    else:
+        form = ExperienceForm()
+
+    context = {
+        "form": form
+    }
+
+    return render(request, "create_experience.html", context)

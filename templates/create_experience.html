@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tambah Experience - Kaysan
+{% endblock title %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                ADD EXPERIENCE
+            </p>
+
+            <h1>
+                Tambah Experience
+            </h1>
+
+            <p>
+                Tambahkan pengalaman baru ke portfolio saya.
+            </p>
+
+        </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">
+                Simpan Experience
+            </button>
+
+            <a href="{% url 'main:show_experience' %}">
+                Batal
+            </a>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock content %}

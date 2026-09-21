@@ -12,6 +12,10 @@ Experience - Kaysan
 
         <h1>My Experience</h1>
 
+        <a href="{% url 'main:create_experience' %}">
+            Tambah Experience
+        </a>
+
         <div class="experience-grid">
 
             {% for experience in experiences %}
