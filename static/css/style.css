@@ -1306,3 +1306,61 @@ img {
         grid-template-columns: 1fr;
     }
 }
+
+/* ==================== PROJECT ACTIONS ==================== */
+
+.project-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.project-action {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 16px;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.project-action:hover {
+    transform: translateY(-2px);
+    background: rgba(128, 128, 128, 0.08);
+}
+
+.project-action.delete {
+    border-color: rgba(180, 60, 60, 0.4);
+}
+
+.github-link {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* ==================== EXPERIENCE ACTIONS ==================== */
+
+.experience-action {
+    display: inline-block;
+    padding: 9px 16px;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.experience-action:hover {
+    transform: translateY(-2px);
+    background: rgba(128, 128, 128, 0.08);
+}
+
+.experience-action.delete {
+    border-color: rgba(180, 60, 60, 0.4);
+}

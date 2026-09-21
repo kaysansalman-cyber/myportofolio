@@ -47,25 +47,29 @@ Projects - Kaysan
                         href="{{ project.github_url }}"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="project-link"
+                        class="project-link github-link"
                     >
                         View on GitHub →
                     </a>
                     {% endif %}
 
-                    <a
-                        href="{% url 'main:edit_project' project.id %}"
-                        class="project-link"
-                    >
-                        Edit Project
-                    </a>
+                    <div class="project-actions">
 
-                    <a
-                        href="{% url 'main:delete_project' project.id %}"
-                        class="project-link"
-                    >
-                        Delete Project
-                    </a>
+                        <a
+                            href="{% url 'main:edit_project' project.id %}"
+                            class="project-action"
+                        >
+                            Edit Project
+                        </a>
+
+                        <a
+                            href="{% url 'main:delete_project' project.id %}"
+                            class="project-action delete"
+                        >
+                            Delete Project
+                        </a>
+
+                    </div>
 
                 </div>
 
