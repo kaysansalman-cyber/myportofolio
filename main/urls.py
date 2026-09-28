@@ -8,6 +8,7 @@ from .views import (
     edit_experience,
     delete_experience,
     show_projects,
+    project_json,
     create_project,
     delete_project,
     edit_project,
@@ -64,6 +65,7 @@ urlpatterns = [
     ),
 
     path("projects/", show_projects, name="show_projects"),
+    path("projects/json/", project_json, name="project_json"),
 
     path("projects/create/", create_project, name="create_project"),
 

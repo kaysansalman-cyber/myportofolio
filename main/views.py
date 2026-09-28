@@ -70,6 +70,14 @@ def show_projects(request):
 
     return render(request, 'projects.html', context)
 
+def project_json(request):
+    data = serializers.serialize(
+        "json",
+        Project.objects.all(),
+        use_natural_foreign_keys=True,
+    )
+    return HttpResponse(data, content_type="application/json")
+
 @login_required
 def create_project(request):
     if not request.user.is_superuser:
