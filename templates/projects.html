@@ -83,14 +83,15 @@ Projects - Kaysan
                             <span class="project-star-count">
                                 {{ project.starred_by.count }} star{{ project.starred_by.count|pluralize }}
                             </span>
-                            
-                        <a
-                            href="{% url 'main:edit_project' project.id %}"
-                            class="project-action"
-                        >
-                            Edit Project
-                        </a>
-
+                            {% if can_edit_projects %}
+                                <a
+                                    href="{% url 'main:edit_project' project.id %}"
+                                    class="project-action"
+                                >
+                                    Edit Project
+                                </a>
+                            {% endif %}                               
+        
                         {% if user.is_superuser %}
                             <a
                                 href="{% url 'main:delete_project' project.id %}"

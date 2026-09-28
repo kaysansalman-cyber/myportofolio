@@ -64,8 +64,14 @@ def experience_json_deserialized(request):
 def show_projects(request):
     projects = Project.objects.all()
 
+    can_edit_projects = (
+        request.user.is_superuser
+        or request.user.groups.filter(name="Editor").exists()
+    )
+
     context = {
-        'projects': projects
+        'projects': projects,
+        'can_edit_projects': can_edit_projects,
     }
 
     return render(request, 'projects.html', context)
