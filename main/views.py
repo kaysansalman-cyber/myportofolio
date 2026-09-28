@@ -78,6 +78,24 @@ def project_json(request):
     )
     return HttpResponse(data, content_type="application/json")
 
+def project_json_deserialized(request):
+    data = serializers.serialize(
+        "json",
+        Project.objects.all(),
+        use_natural_foreign_keys=True,
+    )
+    projects = json.loads(data)
+
+    context = {
+        "projects": projects
+    }
+
+    return render(
+        request,
+        "project_json.html",
+        context
+    )
+
 @login_required
 def create_project(request):
     if not request.user.is_superuser:

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Project JSON - Kaysan
+{% endblock title %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <p class="section-label">JSON DATA</p>
+            <h1>Project JSON Data</h1>
+            <p>
+                Data project yang telah diambil dalam format JSON
+                kemudian di-deserialize dan ditampilkan kembali.
+            </p>
+        </div>
+
+        {% for project in projects %}
+        <article class="project-card">
+            <div class="project-card-content">
+
+                <span class="project-type">
+                    {{ project.fields.project_type }}
+                </span>
+
+                <h2>{{ project.fields.title }}</h2>
+
+                <p>
+                    {{ project.fields.description }}
+                </p>
+
+                <p class="project-technologies">
+                    <strong>Technologies:</strong>
+                    {{ project.fields.technologies }}
+                </p>
+
+                {% if project.fields.github_url %}
+                <a
+                    href="{{ project.fields.github_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link github-link"
+                >
+                    View on GitHub →
+                </a>
+                {% endif %}
+
+                <p>
+                    Created at: {{ project.fields.created_at }}
+                </p>
+
+            </div>
+        </article>
+        {% empty %}
+        <p>No project data available.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
