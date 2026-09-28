@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login - Kaysan
+{% endblock title %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <p class="section-label">LOGIN</p>
+            <h1>Login</h1>
+            <p>
+                Login untuk mengakses fitur yang membutuhkan authentication.
+            </p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">
+                Login
+            </button>
+        </form>
+
+        <p>
+            Belum memiliki akun?
+            <a href="{% url 'main:register' %}">
+                Register di sini
+            </a>
+        </p>
+    </div>
+</section>
+{% endblock content %}

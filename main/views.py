@@ -3,8 +3,10 @@ import json
 from django.shortcuts import redirect, render
 from django.core import serializers
 from django.http import HttpResponse
+from django.contrib.auth import login, logout
+
 from .models import Experience, Project
-from .forms import ProjectForm, ExperienceForm
+from .forms import ProjectForm, ExperienceForm, RegisterForm,  AuthenticationForm
 
 def show_main(request):
     context = {
@@ -159,3 +161,41 @@ def delete_experience(request, id):
 
     return render(request, "delete_experience.html", context)
 
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("main:show_main")
+    else:
+        form = RegisterForm()
+
+    context = {
+        "form": form
+    }
+
+    return render(request, "register.html", context)
+
+
+def login_user(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("main:show_main")
+    else:
+        form = AuthenticationForm()
+
+    context = {
+        "form": form
+    }
+
+    return render(request, "login.html", context)
+
+def logout_user(request):
+    logout(request)
+    return redirect("main:show_main")
