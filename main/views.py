@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.core import serializers
 from django.http import HttpResponse
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 
 from .models import Experience, Project
 from .forms import ProjectForm, ExperienceForm, RegisterForm,  AuthenticationForm
@@ -112,6 +113,7 @@ def edit_project(request, id):
 
     return render(request, "edit_project.html", context)
 
+@login_required
 def create_experience(request):
     if request.method == "POST":
         form = ExperienceForm(request.POST)
@@ -129,6 +131,7 @@ def create_experience(request):
 
     return render(request, "create_experience.html", context)
 
+@login_required
 def edit_experience(request, id):
     experience = Experience.objects.get(id=id)
 
@@ -148,6 +151,7 @@ def edit_experience(request, id):
 
     return render(request, "edit_experience.html", context)
 
+@login_required
 def delete_experience(request, id):
     experience = Experience.objects.get(id=id)
 
