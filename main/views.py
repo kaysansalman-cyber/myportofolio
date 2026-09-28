@@ -131,23 +131,25 @@ def delete_project(request, id):
     context = {"project": project}
     return render(request, "delete_project.html", context)
 
+@login_required(login_url="/login/")
 def edit_project(request, id):
+    if not (
+        request.user.is_superuser
+        or request.user.groups.filter(name="Editor").exists()
+    ):
+        raise PermissionDenied
+
     project = Project.objects.get(id=id)
 
     if request.method == "POST":
         form = ProjectForm(request.POST, instance=project)
-
         if form.is_valid():
             form.save()
             return redirect("main:show_projects")
     else:
         form = ProjectForm(instance=project)
 
-    context = {
-        "form": form,
-        "project": project,
-    }
-
+    context = {"form": form, "project": project}
     return render(request, "edit_project.html", context)
 
 @login_required
@@ -255,8 +257,11 @@ def logout_user(request):
 
     return response
 
-@login_required
+@login_required(login_url="/login/")
 def toggle_star(request, id):
+    if request.method != "POST":
+        raise PermissionDenied
+
     project = Project.objects.get(id=id)
 
     if request.user in project.starred_by.all():

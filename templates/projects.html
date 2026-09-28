@@ -64,16 +64,20 @@ Projects - Kaysan
 
                     <div class="project-actions">
                             {% if user.is_authenticated %}
-                                <a
-                                    href="{% url 'main:toggle_star' project.id %}"
-                                    class="project-action"
+                                <form
+                                    method="POST"
+                                    action="{% url 'main:toggle_star' project.id %}"
+                                    class="project-action-form"
                                 >
-                                    {% if user in project.starred_by.all %}
-                                        ★ Unstar
-                                    {% else %}
-                                        ☆ Star
-                                    {% endif %}
-                                </a>
+                                    {% csrf_token %}
+                                    <button type="submit" class="project-action">
+                                        {% if user in project.starred_by.all %}
+                                            ★ Unstar
+                                        {% else %}
+                                            ☆ Star
+                                        {% endif %}
+                                    </button>
+                                </form>
                             {% endif %}
                             
                         <a
