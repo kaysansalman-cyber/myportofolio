@@ -6,6 +6,7 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 from .models import Experience, Project
 from .forms import ProjectForm, ExperienceForm, RegisterForm,  AuthenticationForm
@@ -69,7 +70,11 @@ def show_projects(request):
 
     return render(request, 'projects.html', context)
 
+@login_required
 def create_project(request):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     if request.method == "POST":
         form = ProjectForm(request.POST)
 
@@ -86,7 +91,11 @@ def create_project(request):
 
     return render(request, "create_project.html", context)
 
+@login_required
 def delete_project(request, id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     project = Project.objects.get(id=id)
 
     if request.method == "POST":
