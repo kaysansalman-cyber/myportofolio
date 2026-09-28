@@ -15,6 +15,7 @@ def show_main(request):
         'npm': '2506540670',
         'study_program': 'Sistem Informasi',
         'bio': 'I am an Information Systems student at the Faculty of Computer Science, Universitas Indonesia, interested in software development, technology, and building useful digital experiences.',
+        'last_login': request.session.get("last_login"),
     }
 
     return render(request, 'index.html', context)
@@ -172,6 +173,9 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+
+            request.session["last_login"] = user.username
+
             return redirect("main:show_main")
     else:
         form = RegisterForm()

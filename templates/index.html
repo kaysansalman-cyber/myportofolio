@@ -25,6 +25,12 @@ Kaysan Salman Ali Kusumah | Portfolio
                 {{ bio }}
             </p>
 
+            {% if user.is_authenticated and last_login %}
+                <p>
+                    Last login: {{ last_login }}
+                </p>
+            {% endif %}
+
             <div class="hero-actions">
                 <a href="#projects" class="button button-primary">
                     View My Projects
