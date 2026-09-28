@@ -1364,3 +1364,22 @@ img {
 .experience-action.delete {
     border-color: rgba(180, 60, 60, 0.4);
 }
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.05rem;
+    line-height: 1.1;
+    position: relative;
+    top: 7.1px;
+}
+.user-info > span:first-child {
+    color: #1f1b18;
+}
+
+.last-login {
+    font-size: 0.7rem;
+    color: #6b625a;
+}

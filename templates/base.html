@@ -28,7 +28,16 @@
                 <a href="{% url 'main:show_main' %}#contact">Contact</a>
 
                 {% if user.is_authenticated %}
-                    <span>Hello, {{ user.username }}</span>
+                    <div class="user-info">
+                        <span>Hello, {{ user.username }}</span>
+
+                        {% if last_login %}
+                            <span class="last-login">
+                                Last login: {{ last_login }}
+                            </span>
+                        {% endif %}
+                    </div>
+
                     <a href="{% url 'main:logout' %}">Logout</a>
                 {% else %}
                     <a href="{% url 'main:login' %}">Login</a>
@@ -37,6 +46,12 @@
             </nav>
         </div>
     </nav>
+
+    {% if user.is_authenticated and last_login %}
+    <div class="last-login">
+        {{ last_login }}
+    </div>
+    {% endif %}
 
     <main>
         {% block content %}

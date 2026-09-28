@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from django.shortcuts import redirect, render
 from django.core import serializers
@@ -15,7 +16,7 @@ def show_main(request):
         'npm': '2506540670',
         'study_program': 'Sistem Informasi',
         'bio': 'I am an Information Systems student at the Faculty of Computer Science, Universitas Indonesia, interested in software development, technology, and building useful digital experiences.',
-        'last_login': request.session.get("last_login"),
+        'last_login': request.COOKIES.get("last_login"),
     }
 
     return render(request, 'index.html', context)
@@ -194,7 +195,14 @@ def login_user(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("main:show_main")
+
+            response = redirect("main:show_main")
+            response.set_cookie(
+                "last_login",
+                datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
+
+            return response
     else:
         form = AuthenticationForm()
 
@@ -206,4 +214,8 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect("main:show_main")
+
+    response = redirect("main:show_main")
+    response.delete_cookie("last_login")
+
+    return response
