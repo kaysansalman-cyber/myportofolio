@@ -289,9 +289,42 @@ Migration tersebut kemudian diterapkan ke database sehingga data `Project` dapat
    → Template
    → Ditampilkan pada halaman web.
 
+### Individual Assignment 4 — Authentication, Authorization, dan Fitur Project
+
+Pada Individual Assignment 4, pengembangan project dilanjutkan dengan menerapkan fitur authentication dan authorization menggunakan sistem autentikasi bawaan Django.
+
+Fitur yang ditambahkan meliputi:
+
+* Register dan login menggunakan authentication Django.
+* Logout dan pengelolaan status pengguna.
+* Penyimpanan informasi login menggunakan session dan cookie.
+* Pembagian hak akses berdasarkan role pengguna.
+* Role Editor menggunakan Django Group.
+* Editor dapat melakukan edit project.
+* Editor tidak dapat membuat atau menghapus project.
+* Superuser dapat membuat, mengedit, dan menghapus project.
+* User yang sudah login dapat melakukan Star dan Unstar pada project.
+* Aksi Star menggunakan method POST dan perlindungan CSRF.
+* Menampilkan jumlah Star pada setiap project.
+* Endpoint JSON untuk data Project.
+* Halaman untuk menampilkan data Project hasil deserialisasi JSON.
+* Pembatasan akses fitur pada sisi server menggunakan `login_required` dan `PermissionDenied`.
+
+Pengujian dilakukan menggunakan beberapa jenis pengguna, yaitu visitor, user biasa, Editor, dan superuser. Setiap role diuji untuk memastikan bahwa pengguna hanya dapat mengakses fitur yang sesuai dengan hak aksesnya.
+
 ## AI Disclosure
 
 Dalam pengerjaan Individual Assignment 2, saya menggunakan **ChatGPT** sebagai alat bantu pembelajaran, pengembangan, debugging, testing, dan dokumentasi.
+
+### Keterbatasan AI dan Perbaikan Manual
+
+AI digunakan sebagai alat bantu, tetapi hasil dari AI tidak selalu dapat langsung diterapkan ke project. Beberapa saran yang diberikan perlu disesuaikan dengan struktur project, konfigurasi URL, dan kebutuhan implementasi yang sebenarnya.
+
+Salah satu contohnya adalah ketika terjadi error pada routing dan namespace URL. Solusi dari AI perlu disesuaikan dengan struktur `main/urls.py` dan `portofolio/urls.py` yang digunakan pada project ini. Selain itu, implementasi juga diverifikasi secara langsung menggunakan `python manage.py check`, unit test, dan pengujian melalui browser.
+
+Pada pengembangan fitur authentication dan authorization, implementasi juga disesuaikan secara manual agar pemeriksaan hak akses dilakukan pada sisi server. Pengujian dilakukan menggunakan beberapa role, yaitu user biasa, Editor, dan superuser, untuk memastikan bahwa akses terhadap fitur sesuai dengan role masing-masing.
+
+Dengan demikian, AI digunakan sebagai alat bantu untuk memahami konsep, mencari alternatif implementasi, dan debugging, sedangkan keputusan akhir mengenai kode, penyesuaian implementasi, pengujian, dan validasi dilakukan pada project secara langsung.
 
 AI digunakan untuk membantu:
 
