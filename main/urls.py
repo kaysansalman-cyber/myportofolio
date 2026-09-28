@@ -11,6 +11,7 @@ from .views import (
     create_project,
     delete_project,
     edit_project,
+    toggle_star,
     register,
     login_user,
     logout_user,
@@ -24,6 +25,12 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
+
+    path(
+    "projects/<uuid:id>/star/",
+    toggle_star,
+    name="toggle_star"
+),
 
     path("experience/", show_experience, name="show_experience"),
 

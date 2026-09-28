@@ -63,7 +63,19 @@ Projects - Kaysan
                     {% endif %}
 
                     <div class="project-actions">
-
+                            {% if user.is_authenticated %}
+                                <a
+                                    href="{% url 'main:toggle_star' project.id %}"
+                                    class="project-action"
+                                >
+                                    {% if user in project.starred_by.all %}
+                                        ★ Unstar
+                                    {% else %}
+                                        ☆ Star
+                                    {% endif %}
+                                </a>
+                            {% endif %}
+                            
                         <a
                             href="{% url 'main:edit_project' project.id %}"
                             class="project-action"

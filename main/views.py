@@ -228,3 +228,14 @@ def logout_user(request):
     response.delete_cookie("last_login")
 
     return response
+
+@login_required
+def toggle_star(request, id):
+    project = Project.objects.get(id=id)
+
+    if request.user in project.starred_by.all():
+        project.starred_by.remove(request.user)
+    else:
+        project.starred_by.add(request.user)
+
+    return redirect("main:show_projects")
