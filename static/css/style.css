@@ -1383,3 +1383,23 @@ img {
     font-size: 0.7rem;
     color: #6b625a;
 }
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    background: #222;
+    color: white;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.toast-error {
+    background: #b91c1c;
+}
+
+.toast-success {
+    background: #166534;
+}

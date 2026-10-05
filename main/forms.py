@@ -11,9 +11,22 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 from main.models import Project, Experience
-
+from django.utils.html import strip_tags
 
 class ProjectForm(ModelForm):
+
+
+    def clean_title(self):
+        title = self.cleaned_data["title"]
+        return strip_tags(title).strip()
+
+    def clean_description(self):
+        description = self.cleaned_data["description"]
+        return strip_tags(description).strip()
+
+    def clean_technologies(self):
+        technologies = self.cleaned_data["technologies"]
+        return strip_tags(technologies).strip()
     class Meta:
         model = Project
 

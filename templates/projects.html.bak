@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Projects - Kaysan
+{% endblock title %}
+
+{% block content %}
+
+<section class="projects-page">
+
+    <section class="projects-section">
+
+        <div class="section-header">
+            <p class="section-label">MY WORK</p>
+            <h1>Projects</h1>
+            <p>
+                Berikut adalah beberapa project yang telah saya kerjakan
+                selama belajar pemrograman dan teknologi.
+            </p>
+        </div>
+
+        {% if user.is_superuser %}
+            <a
+                href="{% url 'main:create_project' %}"
+                class="project-action"
+            >
+                + Create Project
+            </a>
+        {% endif %}
+
+        <div class="projects-grid">
+
+            {% for project in projects %}
+
+            <article class="project-card">
+
+                <div class="project-card-content">
+
+                    <span class="project-type">
+                        {{ project.get_project_type_display }}
+                    </span>
+
+                    <h2>{{ project.title }}</h2>
+
+                    <p>
+                        {{ project.description }}
+                    </p>
+
+                    <p class="project-technologies">
+                        <strong>Technologies:</strong>
+                        {{ project.technologies }}
+                    </p>
+
+                    {% if project.github_url %}
+                    <a
+                        href="{{ project.github_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link github-link"
+                    >
+                        View on GitHub →
+                    </a>
+                    {% endif %}
+
+                    <div class="project-actions">
+                            {% if user.is_authenticated %}
+                                <form
+                                    method="POST"
+                                    action="{% url 'main:toggle_star' project.id %}"
+                                    class="project-action-form"
+                                >
+                                    {% csrf_token %}
+                                    <button type="submit" class="project-action">
+                                        {% if user in project.starred_by.all %}
+                                            ★ Unstar
+                                        {% else %}
+                                            ☆ Star
+                                        {% endif %}
+                                    </button>
+                                </form>
+                            {% endif %}
+
+                            <span class="project-star-count">
+                                {{ project.starred_by.count }} star{{ project.starred_by.count|pluralize }}
+                            </span>
+                            {% if can_edit_projects %}
+                                <a
+                                    href="{% url 'main:edit_project' project.id %}"
+                                    class="project-action"
+                                >
+                                    Edit Project
+                                </a>
+                            {% endif %}                               
+        
+                        {% if user.is_superuser %}
+                            <a
+                                href="{% url 'main:delete_project' project.id %}"
+                                class="project-action delete"
+                            >
+                                Delete Project
+                            </a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <p>
+                Belum ada project yang tersedia.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</section>
+
+{% endblock content %}

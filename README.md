@@ -326,6 +326,15 @@ Pada pengembangan fitur authentication dan authorization, implementasi juga dise
 
 Dengan demikian, AI digunakan sebagai alat bantu untuk memahami konsep, mencari alternatif implementasi, dan debugging, sedangkan keputusan akhir mengenai kode, penyesuaian implementasi, pengujian, dan validasi dilakukan pada project secara langsung.
 
+### Tugas 5
+
+1. Debouncing adalah teknik untuk menunda eksekusi suatu fungsi sampai pengguna berhenti melakukan input selama waktu tertentu. Pada fitur pencarian AJAX, debouncing penting agar request ke server tidak dikirim setiap kali pengguna mengetik satu karakter. Dengan menunggu, misalnya 500 milidetik setelah input terakhir, jumlah request dapat dikurangi sehingga server lebih efisien dan pencarian terasa lebih ringan.
+
+2. `await` digunakan untuk menunggu Promise dari `fetch()` selesai sebelum program melanjutkan ke baris berikutnya. Dengan `await`, hasil response dari server dapat digunakan setelah request selesai. Jika tidak menggunakan `await`, `fetch()` langsung mengembalikan Promise sehingga program dapat melanjutkan eksekusi sebelum response tersedia. Hal ini dapat menyebabkan kita mencoba membaca data response sebelum request selesai.
+
+3. XSS (Cross-Site Scripting) adalah serangan dengan menyisipkan script atau HTML berbahaya ke dalam data yang kemudian ditampilkan kepada pengguna lain. Data yang ditampilkan melalui AJAX/JavaScript perlu diperhatikan karena JavaScript dapat memasukkan data secara langsung ke DOM, misalnya menggunakan `innerHTML`. Jika data tidak di-escape, string yang berisi HTML atau JavaScript dapat dianggap sebagai kode oleh browser. Pada proyek ini, data yang ditampilkan melalui JavaScript di-escape menggunakan `escapeHtml`, sedangkan input pada server dibersihkan menggunakan `strip_tags` pada `ModelForm`.
+
+
 AI digunakan untuk membantu:
 
 * Memahami requirement Individual Assignment 2.

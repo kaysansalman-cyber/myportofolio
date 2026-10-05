@@ -3,7 +3,7 @@ import datetime
 
 from django.shortcuts import redirect, render
 from django.core import serializers
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -77,77 +77,12 @@ def show_projects(request):
     return render(request, 'projects.html', context)
 
 def project_json(request):
-    query = request.GET.get("q", "").strip()
-
-    projects = Project.objects.all()
-
-    if query:
-        projects = projects.filter(title__icontains=query)
-
-    data = []
-
-    for project in projects:
-        data.append({
-            "id": str(project.id),
-            "title": project.title,
-            "description": project.description,
-            "project_type": project.get_project_type_display(),
-            "technologies": project.technologies,
-            "github_url": project.github_url,
-            "star_count": project.starred_by.count(),
-            "is_starred": (
-                request.user.is_authenticated
-                and request.user in project.starred_by.all()
-            ),
-        })
-
-    return JsonResponse({
-        "projects": data
-    })
-
-@login_required(login_url="/login/")
-def create_project_ajax(request):
-    if not request.user.is_superuser:
-        return JsonResponse(
-            {"error": "You do not have permission to create projects."},
-            status=403
-        )
-
-    if request.method != "POST":
-        return JsonResponse(
-            {"error": "Method not allowed."},
-            status=405
-        )
-
-    form = ProjectForm(request.POST)
-
-    if form.is_valid():
-        project = form.save()
-
-        return JsonResponse(
-            {
-                "message": "Project berhasil ditambahkan.",
-                "project": {
-                    "id": str(project.id),
-                    "title": project.title,
-                    "description": project.description,
-                    "project_type": project.get_project_type_display(),
-                    "technologies": project.technologies,
-                    "github_url": project.github_url,
-                    "star_count": 0,
-                    "is_starred": False,
-                }
-            },
-            status=201
-        )
-
-    return JsonResponse(
-        {
-            "error": "Data tidak valid.",
-            "errors": form.errors.get_json_data(),
-        },
-        status=400
+    data = serializers.serialize(
+        "json",
+        Project.objects.all(),
+        use_natural_foreign_keys=True,
     )
+    return HttpResponse(data, content_type="application/json")
 
 def project_json_deserialized(request):
     data = serializers.serialize(
